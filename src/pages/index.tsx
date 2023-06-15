@@ -1,14 +1,13 @@
 import { MainLayout } from '@/layouts/MainLayout';
-
-import Head from 'next/head';
+import Form from '@/components/Form/Form';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 export default function Home() {
   return (
-    <MainLayout>
-      <Head>
-        <title>Converter</title>
-      </Head>
+    <MainLayout title="Home | Converter">
       <h1>Home page</h1>
+      <Form />
     </MainLayout>
   );
 }

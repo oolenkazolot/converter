@@ -6,10 +6,10 @@ export const Navbar = () => {
     <nav className={styles.navbar}>
       <ul className={styles.navbar__list}>
         <li>
-          <Link href="/">Home</Link>
+          <Link href={'/'}>Home</Link>
         </li>
         <li>
-          <Link href="/rates">Rates</Link>
+          <Link href={'/rates'}>Rates</Link>
         </li>
       </ul>
     </nav>
