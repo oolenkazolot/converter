@@ -1,0 +1,28 @@
+@import '../../styles/variables.module.scss';
+
+.navbar {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__link {
+    color: $color-white;
+    font-size: 18px;
+    transition: opacity $transition;
+    padding-bottom: 2px;
+
+    &:hover {
+      opacity: $hover;
+    }
+
+    &_active {
+      border-bottom: 2px solid $color-white;
+    }
+  }
+}

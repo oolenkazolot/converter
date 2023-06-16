@@ -1,0 +1,31 @@
+@import './variables.module.scss';
+
+.btn {
+  max-width: 130px;
+  width: 100%;
+  min-height: 44px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  background-color: $color-main;
+  color: $color-white;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity $transition;
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  &:hover {
+    opacity: $hover;
+  }
+}
+
+.title {
+  color: $color-main;
+  font-size: 28px;
+}
