@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setCurrencies } from '../redux/features/converter-slice';
 import { RootState } from '@/redux/store';
+import styles from './MainLayout.module.scss';
 
 type ComponentProps = {
   children: ReactNode;
@@ -32,7 +33,7 @@ export function MainLayout({ children, title }: ComponentProps) {
         <title>{title}</title>
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </>
   );

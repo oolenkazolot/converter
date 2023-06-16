@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { setBaseCurrency } from '@/redux/features/converter-slice';
 import { getExchangeRates } from '@/api/getExchangeRates';
+import RatesTable from '@/components/RatesTable/RatesTable';
+import globalStyle from '../../styles/globals.module.scss';
+import style from './rates.module.scss';
 
 import { useEffect, useState } from 'react';
 
@@ -43,9 +46,11 @@ export default function Rates({ exchangeRates: serverExchangeRates, error }: any
 
   return (
     <MainLayout title="Rates | Converter">
-      <h1>Rates</h1>
-      <Select options={currencies} defaultOption={baseCurrency} onChange={changeBaseCurrency} />
-      {exchangeRates ? <pre>{JSON.stringify(exchangeRates)}</pre> : <span>Loading ...</span>}
+      <div>
+        <h1 className={globalStyle.title}>Rates</h1>
+        <Select options={currencies} classNameTwo={style.select} defaultOption={baseCurrency} onChange={changeBaseCurrency} />
+        {exchangeRates ? <RatesTable baseCurrency={baseCurrency} exchangeRates={exchangeRates} /> : <span>Loading ...</span>}
+      </div>
     </MainLayout>
   );
 }

@@ -5,7 +5,7 @@ import { ReduxProvider } from '@/redux/provider';
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ReduxProvider>
-      <NextNProgress color="#29D" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
+      <NextNProgress color="#fff" startPosition={0.3} stopDelayMs={200} height={4} showOnShallow={true} />
       <Component {...pageProps} />
     </ReduxProvider>
   );

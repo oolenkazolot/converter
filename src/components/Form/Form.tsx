@@ -4,6 +4,8 @@ import { getConvAmount } from '../../api/getConvAmount';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useState, useMemo } from 'react';
+import style from './Form.module.scss';
+import globalStyle from '../../styles/globals.module.scss';
 
 type FormValues = {
   currencyInput: number;
@@ -25,10 +27,9 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    trigger,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ reValidateMode: 'onChange' });
 
   let currenciesFiltered: string[] = useMemo(() => filterCurrencies(currencies, baseCurrency), [currencies, baseCurrency]);
 
@@ -46,18 +47,25 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <>
-        <input inputMode="numeric" placeholder="enter amount" {...register('currencyInput', { required: true })} onChange={handleResetAmountInput} />
-        {errors.currencyInput && <span>This field amount is required</span>}
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={style.form__item}>
+        <input className={style.form__input} inputMode="numeric" placeholder="enter amount" {...register('currencyInput', { required: true })} onChange={handleResetAmountInput} />
+
         <Select options={currencies} register={register('fromCurrencySelect')} onChange={handleResetAmountInput} />
-      </>
-      <>
-        <input inputMode="numeric" value={convertedAmount} {...register('amountInput')} />
+      </div>
+      {errors.currencyInput && <span className={style.form__error}>This field amount is required</span>}
+      <div className={style.form__item}>
+        <input className={style.form__input} inputMode="numeric" value={convertedAmount} {...register('amountInput')} />
         <Select options={currenciesFiltered} register={register('toCurrencySelect')} onChange={handleResetAmountInput} />
-      </>
-      <input type="submit" />
-      <button onClick={handleReset}>Reset</button>
+      </div>
+      <div className={style.form__buttons}>
+        <button type="submit" className={globalStyle.btn}>
+          Submit
+        </button>
+        <button className={globalStyle.btn} onClick={handleReset}>
+          Reset
+        </button>
+      </div>
     </form>
   );
 }

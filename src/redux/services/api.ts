@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL } from '@/constants/constants';
 
 type TCurrency = {
   conversion_rates: {
@@ -9,7 +10,7 @@ type TCurrency = {
 export const Api = createApi({
   reducerPath: 'Api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://v6.exchangerate-api.com/v6/728b34419a4718275ea54ee3',
+    baseUrl: `${API_URL}`,
   }),
 
   endpoints: (builder) => ({

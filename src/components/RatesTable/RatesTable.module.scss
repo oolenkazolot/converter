@@ -1,0 +1,29 @@
+@import '../../styles/variables.module.scss';
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+
+  & th,
+  & td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  & tbody:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  & tbody:hover {
+    background-color: #ddd;
+  }
+
+  & thead {
+    background-color: $color-main;
+    color: $color-white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+}

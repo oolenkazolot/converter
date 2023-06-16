@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '@/constants/constants';
 
 type Props = {
   data: {
@@ -11,7 +12,7 @@ type Props = {
 
 export const getConvAmount = async ({ data, setConvertedAmount }: Props) => {
   try {
-    const res = await axios.get(`https://v6.exchangerate-api.com/v6/728b34419a4718275ea54ee3/pair/${data.fromCurrencySelect}/${data.toCurrencySelect}/${data.currencyInput}`);
+    const res = await axios.get(`${API_URL}/pair/${data.fromCurrencySelect}/${data.toCurrencySelect}/${data.currencyInput}`);
     const { conversion_result } = res.data;
     setConvertedAmount(conversion_result);
   } catch (e) {
