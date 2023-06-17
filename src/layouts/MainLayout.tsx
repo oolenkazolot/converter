@@ -4,10 +4,9 @@ import { Footer } from '@/components/Footer/Footer';
 import Head from 'next/head';
 
 import { useGetCurrenciesQuery } from '../redux/services/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setCurrencies } from '../redux/features/converter-slice';
-import { RootState } from '@/redux/store';
 import styles from './MainLayout.module.scss';
 
 type ComponentProps = {
@@ -16,8 +15,7 @@ type ComponentProps = {
 };
 
 export function MainLayout({ children, title }: ComponentProps) {
-  const baseCurrency = useSelector((state: RootState) => state.converterReducer.baseCurrency);
-  const { data } = useGetCurrenciesQuery(baseCurrency);
+  const { data } = useGetCurrenciesQuery('USD');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +23,7 @@ export function MainLayout({ children, title }: ComponentProps) {
       const arrCurrency: string[] = Object.keys(data?.conversion_rates);
       dispatch(setCurrencies(arrCurrency));
     }
-  }, [data, baseCurrency]);
+  }, [data, dispatch]);
 
   return (
     <>
