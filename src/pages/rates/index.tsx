@@ -17,6 +17,9 @@ export async function getServerSideProps() {
 
 export default function Rates({ exchangeRates: serverExchangeRates, error }: any) {
   const baseCurrency = useSelector((state: RootState) => state.converterReducer.baseCurrency);
+
+  const currencies: string[] = useSelector((state: RootState) => state.converterReducer.currencies);
+  const dispatch = useDispatch();
   const [exchangeRates, setExchangeRates] = useState(serverExchangeRates);
 
   useEffect(() => {
@@ -28,21 +31,19 @@ export default function Rates({ exchangeRates: serverExchangeRates, error }: any
     load();
   }, [baseCurrency]);
 
-  if (!exchangeRates) {
-    return;
-  }
-
   if (error) {
     return error;
   }
 
-  const currencies: string[] = useSelector((state: RootState) => state.converterReducer.currencies);
-
-  const dispatch = useDispatch();
-
   const changeBaseCurrency = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value);
+
     dispatch(setBaseCurrency(event.target.value));
   };
+
+  if (!exchangeRates) {
+    return;
+  }
 
   return (
     <MainLayout title="Rates | Converter">
